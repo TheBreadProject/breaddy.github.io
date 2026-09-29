@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Br34ddyB0ii — Etický hacking</title>
+<meta name="description" content="Osobní stránka o mé práci v oblasti etického hackingu a kybernetické bezpečnosti.">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-alt: #11161d;
+    --panel: #161b22;
+    --line: #262d38;
+    --text: #dfe6ee;
+    --muted: #8b95a3;
+    --accent: #3fb950;
+    --accent-dim: #2a5c39;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  code, .mono { font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+
+  header { border-bottom: 1px solid var(--line); background: var(--bg-alt); position: sticky; top: 0; z-index: 5; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 16px 22px; }
+  .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+  .logo span { color: var(--accent); }
+  nav a { color: var(--muted); margin-left: 20px; font-size: 0.95rem; }
+  nav a:hover { color: var(--text); }
+
+  .hero { padding: 80px 0 64px; border-bottom: 1px solid var(--line); }
+  .tag { display: inline-block; font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; font-size: 0.85rem; color: var(--accent); border: 1px solid var(--accent-dim); background: rgba(63,185,80,0.08); padding: 3px 10px; border-radius: 3px; margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); margin: 0 0 16px; line-height: 1.25; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero p { color: var(--muted); font-size: 1.08rem; max-width: 40em; margin: 0 0 26px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius: 4px; font-size: 0.95rem; font-weight: 600; margin: 0 10px 8px 0; border: 1px solid var(--accent-dim); }
+  .btn-main { background: var(--accent); color: #04140a; border-color: var(--accent); }
+  .btn-main:hover { background: #57d66a; text-decoration: none; }
+  .btn-outline { color: var(--text); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  h2 { font-size: 1.4rem; margin: 0 0 6px; }
+  h2 .num { color: var(--accent); font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; font-weight: 400; margin-right: 10px; }
+  .lead { color: var(--muted); max-width: 42em; margin: 0 0 30px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+  .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+  .project { background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 4px; padding: 20px 22px; margin-bottom: 14px; }
+  .project h3 { margin: 0 0 4px; font-size: 1.15rem; }
+  .status { display: inline-block; font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; font-size: 0.8rem; color: var(--muted); border: 1px dashed var(--line); padding: 1px 8px; border-radius: 3px; margin-bottom: 10px; }
+  .project p { margin: 0 0 10px; color: var(--muted); max-width: 42em; }
+
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 18px; margin-bottom: 10px; }
+  details + details { margin-top: 0; }
+  summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; font-size: 1.1rem; }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--muted); margin: 12px 0 0; }
+
+  .contact-box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 26px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .contact-box .email { font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace; font-size: 1.05rem; color: var(--accent); }
+  .bread-icon { width: 64px; height: auto; flex-shrink: 0; }
+  .note { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+
+  footer { padding: 28px 0 44px; color: var(--muted); font-size: 0.85rem; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">Br34<span>ddy</span>B0ii</div>
+    <nav>
+      <a href="#o-mne">O mně</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#faq">Dotazy</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="tag">etický hacking / kybernetická bezpečnost</span>
+      <h1>Ahoj, jsem Br34ddyB0ii. Zabývám se <span class="accent">etickým hackingem</span> a bezpečností.</h1>
+      <a class="btn btn-main" href="#projekty">Zobrazit projekty</a>
+      <a class="btn btn-outline" href="#faq">Časté dotazy</a>
+    </div>
+  </div>
+
+  <section id="o-mne">
+    <div class="wrap">
+      <h2><span class="num">01</span>O mně</h2>
+      <p class="lead">Zaměřuju se na praktickou bezpečnost — hledání slabin, obranu systémů a psaní nástrojů, které to celé usnadňují. Vše dělám v souladu s pravidly etického hackingu: se svolením, transparentně a s cílem věci zabezpečit, ne poškodit.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Čím se zabývám</h3>
+          <p>Penetrační testování, bezpečnost sítí a Linuxu, vývoj bezpečnostních nástrojů.</p>
+        </div>
+        <div class="card">
+          <h3>Jak pracuju</h3>
+          <p>Vždy s vědomím a souhlasem dané strany. Žádné neoprávněné zásahy, žádné zkratky.</p>
+        </div>
+        <div class="card">
+          <h3>Co tu najdeš</h3>
+          <p>Přehled projektů, odpovědi na časté otázky a způsob, jak mě kontaktovat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projekty">
+    <div class="wrap">
+      <h2><span class="num">02</span>Projekty</h2>
+      <p class="lead">Aktuální projekty a jejich stav.</p>
+
+      <div class="project">
+        <h3>The Bread Project</h3>
+        <span class="status">status: aktivní</span>
+        <p>Zastřešující stránka pro všechny mé bezpečnostní a IT projekty — přehled toho, na čem právě pracuju.</p>
+      </div>
+
+      <div class="project">
+        <h3>Onyx Protocol</h3>
+        <span class="status">status: ve vývoji</span>
+        <p>Zabezpečená chatovací aplikace zaměřená na soukromou komunikaci.</p>
+      </div>
+
+      <div class="project">
+        <h3>Bread VPN</h3>
+        <span class="status">status: ve vývoji</span>
+        <p>VPN klient pro Linux postavený na Toru, fungující systémově pro celé zařízení, ne jen po jednotlivých aplikacích.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2><span class="num">03</span>Časté dotazy</h2>
+      <p class="lead">Odpovědi na otázky, které dostávám nejčastěji.</p>
+
+      <details>
+        <summary>Co přesně dělá etický hacker?</summary>
+        <p>Hledá bezpečnostní slabiny v systémech, sítích nebo aplikacích se svolením jejich vlastníka, a pomáhá je opravit dřív, než je zneužije někdo s horšími úmysly.</p>
+      </details>
+      <details>
+        <summary>Můžeš mi otestovat/prolomit účet nebo zařízení?</summary>
+        <p>Ne. Bez výslovného souhlasu majitele daného systému nedělám žádné zásahy — to by nebyl etický hacking, ale trestný čin.</p>
+      </details>
+      <details>
+        <summary>Jak se dostat k etickému hackingu?</summary>
+        <p>Základy sítí a Linuxu, poctivé studium (např. certifikace jako CEH nebo OSCP) a praxe na legálních platformách typu Hack The Box nebo TryHackMe.</p>
+      </details>
+      <details>
+        <summary>Jak tě mám kontaktovat?</summary>
+        <p>Nejjednodušší je e-mail níže. Popiš stručně, o co jde, ať se k tomu můžu vyjádřit rychleji.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="kontakt" style="border-bottom:none;">
+    <div class="wrap">
+      <h2><span class="num">04</span>Kontakt</h2>
+      <div class="contact-box">
+        <div>
+          <div class="mono">Napiš mi na</div>
+          <div class="email">breaddy@tutamail.com</div>
+        </div>
+        <svg class="bread-icon" viewBox="0 0 200 130" role="img" aria-label="Chleba">
+          <path d="M18 78 C14 36 58 16 100 16 C142 16 186 36 182 78 C181 100 168 112 150 112 L50 112 C32 112 19 100 18 78Z" fill="#3fb950" fill-opacity="0.12" stroke="#3fb950" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M62 38 Q72 56 62 78" fill="none" stroke="#3fb950" stroke-width="5" stroke-linecap="round"/>
+          <path d="M100 32 Q110 56 100 84" fill="none" stroke="#3fb950" stroke-width="5" stroke-linecap="round"/>
+          <path d="M138 38 Q148 56 138 78" fill="none" stroke="#3fb950" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="note">Než napíšeš, mrkni prosím na časté dotazy výše — ušetří to čas oběma.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Br34ddyB0ii — etický hacking</div>
+    <div>&copy; <span id="yr">2026</span></div>
+  </div>
+</footer>
+
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
